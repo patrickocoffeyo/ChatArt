@@ -1,10 +1,9 @@
-<template name="example">
-  <h2>This is a sample view.</h2>
-  <p class="lead">This file is located in <code>/client/views/example/example.html</code>. The <code>example.js</code> defines a route, and yields the <code>example</code> template into the <code>layoutMain</code> layout template.</p>
+<template name="board">
+  {{> quickForm collection="Polygons" id="insertPolygonsForm" type="insert" doc=defaultValues}}
 
-  <p>Just delete this crap and start working.</p>
-
-  {{#each examples}}
-    <h3>{{title}}</h3>
-  {{/each}}
+  <div id="polygons">
+    {{#each polygons}}
+      <div class="polygon" id="{{this._id}}" data-x="{{left}}" data-y="{{top}}" style="width: {{width}}px; height: {{height}}px; background-color: {{backgroundColor}}; top: {{top}}px; left: {{left}}px; position: absolute;"></div>
+    {{/each}}
+  </div>
 </template>

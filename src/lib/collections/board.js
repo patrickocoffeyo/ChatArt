@@ -2,7 +2,7 @@
  * @file
  * Defines Boards collections and helpers.
  */
-/* globals Examples:true, Mongo */
+/* globals Boards:true, Mongo */
 
 // Declare Boards collection.
 Boards = new Mongo.Collection('boards');
@@ -32,7 +32,6 @@ Boards.helpers({
     if (Meteor.user()._id === this.author) {
       return true;
     }
-
     return false;
   }
 });

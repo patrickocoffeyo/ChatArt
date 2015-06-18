@@ -14,15 +14,14 @@ Router.route('/boards', {
   },
   action: function () {
     this.render('boardList', {
-      // Pass example documents into the template.
       data: function () {
         return {
           boards: function() {
             return Boards.find();
           }
-        };
+        }
       }
-    });
+    })
   }
 });
 
@@ -42,5 +41,66 @@ Router.route('/boards/create', {
 AutoForm.addHooks(['insertBoardsForm'], {
   onSuccess: function(operation, result, template) {
     Router.go('/boards');
+  }
+});
+
+/**
+ * Route that displays a board
+ */
+Router.route('/boards/:_id', {
+  layoutTemplate: 'layoutMain',
+  waitOn: function () {
+    return [
+      Meteor.subscribe('board', this.params._id),
+      Meteor.subscribe('polygons', this.params._id)
+    ];
+  },
+  action: function () {
+    this.render('board', {
+      data: function() {
+        return {
+          polygons: function() {
+            // Our subscription only returns polygons for the current board.
+            // No need to filter here.
+            return Polygons.find();
+          }
+        }
+      }
+    })
+  }
+});
+
+/**
+ * Provide default values to the Polygon insert form
+ */
+Template.board.helpers({
+  defaultValues: function() {
+    return {
+      board: Router.current().params._id
+    };
+  }
+});
+
+/**
+ * Create drag/drop functionality.
+ */
+interact('.polygon').draggable({
+  inertia: true,
+  onmove: function(e) {
+    var $target = $(e.target),
+        x = $target.data('x') + e.dx,
+        y = $target.data('y') + e.dy;
+
+    $target.css({
+      left: x,
+      top: y
+    });
+
+    $target.data('x', x);
+    $target.data('y', y);
+  },
+  onend: function(e) {
+    var $target = $(e.target);
+    Polygons.update({_id: $target.attr('id') }, { $set: { top: $target.data('y'), left: $target.data('x') } });
   }
 });

@@ -5,7 +5,7 @@
 /* globals Router */
 
 Router.configure({
-  layoutTemplate: 'layoutMain'
+  layoutTemplate: 'layoutThin'
 });
 
 // If a user has no session, then direct them to the authentication page.
@@ -29,8 +29,3 @@ Router.route('/', {
   }
 });
 
-AutoForm.addHooks(['insertBoardsForm'], {
-  onSuccess: function(operation, result, template) {
-    Router.go('/boards');
-  }
-});
