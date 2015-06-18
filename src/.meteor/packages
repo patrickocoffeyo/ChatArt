@@ -4,7 +4,6 @@
 # but you can also edit it by hand.
 
 meteor-platform
-insecure
 iron:router
 aldeed:collection2
 dburles:collection-helpers
@@ -16,4 +15,5 @@ accounts-password
 accounts-base
 useraccounts:core
 useraccounts:unstyled
-
+aldeed:autoform
+aldeed:delete-button

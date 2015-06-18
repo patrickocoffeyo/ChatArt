@@ -1,0 +1,6 @@
+<template name="boardCreate">
+  {{#autoForm collection="Boards" id="insertBoardsForm" type="insert"}}
+    {{> afQuickField name='title'}}
+    <button type="submit" class="btn btn-primary">Create</button>
+  {{/autoForm}}
+</template>

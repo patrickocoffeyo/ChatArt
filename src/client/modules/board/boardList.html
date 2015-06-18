@@ -1,7 +1,12 @@
 <template name="boardList">
+  <h2>Boards</h2>
+  <a href="/boards/create">Create a board</a>
   <ul>
     {{#each boards}}
-      <li>{{title}}</li>
+    <li>
+        {{> quickRemoveButton collection="Boards" _id=this._id}}
+      {{title}}
+      </li>
     {{/each}}
   </ul>
 </template>

@@ -1,16 +1,17 @@
 /**
  * @file
- * Defines '/' route.
+ * Defines board-related routes.
  */
-/* globals Router, Meteor, Examples */
+/* globals Router, Meteor, Boards */
 
+/**
+ * Route that lists available boards.
+ */
 Router.route('/boards', {
   // Wait until subscription has been created and the client has data.
   waitOn: function () {
-    return Meteor.subscribe('board');
+    return Meteor.subscribe('boards');
   },
-
-  // Render the 'example' template.
   action: function () {
     this.render('boardList', {
       // Pass example documents into the template.
@@ -25,3 +26,21 @@ Router.route('/boards', {
   }
 });
 
+/**
+ * Route that allows someone to create a board.
+ */
+Router.route('/boards/create', {
+  action: function () {
+    this.render('boardCreate');
+  }
+});
+
+/**
+ * Implements Autoform.addHooks.
+ * Redirects to /boards after board is created.
+ */
+AutoForm.addHooks(['insertBoardsForm'], {
+  onSuccess: function(operation, result, template) {
+    Router.go('/boards');
+  }
+});

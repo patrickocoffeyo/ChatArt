@@ -2,20 +2,16 @@
  * @file
  * Define allow and publish functions for Boards collection.
  */
-/* globals Meteor, Examples */
-
-Meteor.startup(function() {
-  Boards.allow({
-    insert: function(userId, example) {
-      return true;
-    },
-    update: function(userId, example) {
-      return true;
-    },
-    remove: function(userId, example) {
-      return true;
-    }
-  });
+/* globals Meteor, Boards */
+var ownsDocument = function(userId, doc) {
+  return doc && doc.author === userId;
+}
+Boards.allow({
+  insert: function() {
+    return true;
+  },
+  update: ownsDocument,
+  remove: ownsDocument
 });
 
 Meteor.publish('boards', function() {

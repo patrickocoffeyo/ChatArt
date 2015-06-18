@@ -15,7 +15,24 @@ Boards.attachSchema({
     max: 200
   },
   author: {
-    type: Meteor.user,
+    type: String,
     label: 'Author',
+    autoValue: function() {
+      return Meteor.user()._id;
+    }
+  }
+});
+
+// Add helpers to Boards collection object.
+Boards.helpers({
+  authorObject: function() {
+    return Meteor.users.findOne(this.author);
+  },
+  authorIsCurrentUser: function() {
+    if (Meteor.user()._id === this.author) {
+      return true;
+    }
+
+    return false;
   }
 });

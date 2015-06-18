@@ -28,3 +28,9 @@ Router.route('/', {
     }
   }
 });
+
+AutoForm.addHooks(['insertBoardsForm'], {
+  onSuccess: function(operation, result, template) {
+    Router.go('/boards');
+  }
+});
