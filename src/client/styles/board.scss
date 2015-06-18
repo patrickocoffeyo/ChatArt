@@ -20,11 +20,12 @@
   padding: 20px 10px 20px 10px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 300;
+  box-sizing: border-box;
 
+  .form-group:nth-child(7), .form-group:nth-child(8) { display: none; }
   .form-group, div:last-of-type {
     display: inline-block;
     vertical-align: middle;
-    label[for="author"], input[name="author"], label[for="board"], input[name="board"] { display: none; }
 
     input, textarea, select {
       width: 80px;
