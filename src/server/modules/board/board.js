@@ -1,11 +1,11 @@
 /**
  * @file
- * Define allow and publish functions for Examples collection.
+ * Define allow and publish functions for Boards collection.
  */
 /* globals Meteor, Examples */
 
 Meteor.startup(function() {
-  Examples.allow({
+  Boards.allow({
     insert: function(userId, example) {
       return true;
     },
@@ -18,6 +18,6 @@ Meteor.startup(function() {
   });
 });
 
-Meteor.publish('examples', function() {
-  return Examples.find();
+Meteor.publish('boards', function() {
+  return Boards.find();
 });

@@ -4,20 +4,20 @@
  */
 /* globals Router, Meteor, Examples */
 
-Router.route('/', {
+Router.route('/boards', {
   // Wait until subscription has been created and the client has data.
   waitOn: function () {
-    return Meteor.subscribe('examples');
+    return Meteor.subscribe('board');
   },
 
   // Render the 'example' template.
   action: function () {
-    this.render('example', {
+    this.render('boardList', {
       // Pass example documents into the template.
       data: function () {
         return {
-          examples: function() {
-            return Examples.find();
+          boards: function() {
+            return Boards.find();
           }
         };
       }

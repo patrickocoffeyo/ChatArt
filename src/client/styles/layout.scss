@@ -1,0 +1,23 @@
+/**
+ * @file
+ * Layout definition.
+ */
+
+// Header styles.
+#header {
+  position: relative;
+  height: 80px;
+  padding: 10px 0;
+}
+
+// Container styles.
+.container {
+  max-width: 800px;
+  margin: 30px auto 30px;
+  padding: 0 20px 0 30px;;
+  box-sizing: border-box;
+
+  &.thin {
+    max-width: 600px;
+  }
+}

@@ -12,4 +12,8 @@ alanning:roles
 particle4dev:sass
 underscore
 jquery
+accounts-password
 accounts-base
+useraccounts:core
+useraccounts:unstyled
+
