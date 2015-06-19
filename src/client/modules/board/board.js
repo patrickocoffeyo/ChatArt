@@ -98,9 +98,6 @@ interact('.polygon').draggable({
 
     $target.data('x', x);
     $target.data('y', y);
-  },
-  onend: function(e) {
-    var $target = $(e.target);
-    Polygons.update({_id: $target.attr('id') }, { $set: { top: $target.data('y'), left: $target.data('x') } });
+    Polygons.update({_id: $target.attr('id') }, { $set: { top: y, left: x } });
   }
 });
